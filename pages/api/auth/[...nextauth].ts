@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { login } from '../../../db/user'
 
 export default NextAuth({
   providers: [
@@ -23,7 +24,7 @@ export default NextAuth({
         const username = credentials?.username
         const password = credentials?.password
         console.log('authorize', username, password)
-        const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+        const user = login(username!, password!)
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
