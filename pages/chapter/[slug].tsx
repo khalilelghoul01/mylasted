@@ -42,7 +42,7 @@ function Chapter({ prefetch }: { prefetch: Chapter }) {
             {chapter?.content &&
               chapter?.content.split('\n').map((line, index) => (
                 <React.Fragment key={index}>
-                  <p>{line}</p>
+                  <p className="pb-2">{line}</p>
                 </React.Fragment>
               ))}
           </div>
