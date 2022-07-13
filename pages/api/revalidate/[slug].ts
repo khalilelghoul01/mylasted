@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { slug } = req.query
-  await res.revalidate(server + `/chapter/${slug}`)
+  await res.revalidate(`/chapter/${slug}`)
   res.status(200).json({
     slug,
   })
