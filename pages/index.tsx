@@ -5,19 +5,32 @@ import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import ChapterCard from '../components/ChapterCard'
-import Navbar from '../components/Navbar'
+import { getAllChapters } from '../db/chapters'
+import { server } from './../config/index'
 
-const Home: NextPage = () => {
+// export async function getServerSideProps() {
+//   const data = await (await fetch(server + '/api/tenChapters')).json()
+//   return {
+//     props: {
+//       prefetch: data.chapters,
+//     },
+//   }
+// }
+
+export async function getStaticProps() {
+  const data = await (await fetch(server + '/api/tenChapters')).json()
+  return {
+    props: {
+      prefetch: data.chapters,
+    },
+    revalidate: 60 * 20,
+  }
+}
+
+const Home = ({ prefetch }: { prefetch: Chapter[] }) => {
   const router = useRouter()
-  const [chapters, setChapters] = useState([])
+  const [chapters, setChapters] = useState(prefetch)
   const { data: session } = useSession()
-  useEffect(() => {
-    fetch('/api/tenChapters')
-      .then((res) => res.json())
-      .then((data) => {
-        setChapters(data.chapters)
-      })
-  }, [])
   return (
     <>
       <div className="w-full h-full dark:bg-gray-900 bg-gray-100 min-h-screen ">

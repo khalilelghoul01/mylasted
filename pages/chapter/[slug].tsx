@@ -3,33 +3,32 @@ import Slider from '../../components/slider'
 import Navbar from '../../components/Navbar'
 import { useRouter } from 'next/router'
 import { Chapter } from '@prisma/client'
-function Chapter() {
-  const [chapter, setChapter] = useState<Chapter>({
-    title: 'Loading...',
-    content: 'Loading...',
-    id: 0,
-    translatorId: 0,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    slug: '',
-  })
-  const [fontSize, setFontSize] = useState(50)
-  const slug = useRouter().query.slug
-  useEffect(() => {
-    fetch('/api/chapter', {
+import { server } from '../../config'
+
+export async function getServerSideProps({ params }: { params: any }) {
+  const data = await (
+    await fetch(server + '/api/chapter', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        slug: slug,
+        slug: params.slug,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setChapter(data.chapter)
-      })
-  }, [])
+  ).json()
+  return {
+    props: {
+      prefetch: data.chapter,
+    },
+  }
+}
+
+function Chapter({ prefetch }: { prefetch: Chapter }) {
+  const [chapter, setChapter] = useState<Chapter>(prefetch)
+  const [fontSize, setFontSize] = useState(50)
+  const slug = useRouter().query.slug
+
   return (
     <>
       <div className="w-full h-full dark:bg-gray-900 bg-gray-100 min-h-screen ">
@@ -44,7 +43,6 @@ function Chapter() {
               chapter?.content.split('\n').map((line, index) => (
                 <React.Fragment key={index}>
                   <p>{line}</p>
-                  <br />
                 </React.Fragment>
               ))}
           </div>

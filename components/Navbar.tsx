@@ -28,13 +28,14 @@ function Navbar({ toggleTheme }: { toggleTheme: (dark: boolean) => void }) {
     }
   }
   const [isOpen, setIsOpen] = useState(false)
-  const [isDark, setisDark] = useState(getLocalStorage() ?? false)
+  const [isDark, setisDark] = useState(getLocalStorage())
   const toggle = () => setIsOpen(!isOpen)
   const toggleDark = () => {
     setisDark(!isDark)
     setLocalStorage(!isDark)
   }
   useEffect(() => {
+    setisDark(getLocalStorage())
     toggleTheme(isDark)
     setLocalStorage(isDark)
   }, [isDark])
