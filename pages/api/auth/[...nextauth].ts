@@ -23,7 +23,6 @@ export default NextAuth({
         // Add logic here to look up the user from the credentials supplied
         const username = credentials?.username
         const password = credentials?.password
-        console.log('authorize', username, password)
         const user = login(username!, password!)
 
         if (user) {
