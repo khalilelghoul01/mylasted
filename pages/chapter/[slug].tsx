@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect ,useState} from 'react'
 import Slider from '../../components/slider'
 import Navbar from '../../components/Navbar'
 import { useRouter } from 'next/router'
 import { Chapter } from '@prisma/client'
 function chapter() {
-  const [chapter, setChapter] = React.useState<Chapter>({
+  const [chapter, setChapter] = useState<Chapter>({
     title: 'Loading...',
     content: 'Loading...',
     id: 0,
@@ -13,7 +13,7 @@ function chapter() {
     updatedAt: new Date(),
     slug: '',
   })
-  const [fontSize, setFontSize] = React.useState(50)
+  const [fontSize, setFontSize] = useState(50)
   const slug = useRouter().query.slug
   useEffect(() => {
     fetch('/api/chapter', {

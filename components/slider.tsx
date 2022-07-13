@@ -20,7 +20,7 @@ function Slider({ onChange }: { onChange: (value: number) => void }) {
       localStorage.setItem('fontSize', value.toString())
     }
   }
-  const [value, setValue] = React.useState(10)
+  const [value, setValue] = useState(10)
   useEffect(() => {
     setValue(getLocalStorage())
   }, [])
