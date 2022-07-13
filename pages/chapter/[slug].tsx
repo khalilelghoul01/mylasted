@@ -33,6 +33,7 @@ export async function getStaticProps({ params }: { params: any }) {
     props: {
       prefetch: data.chapter,
     },
+    revalidate: 60 * 60 * 24,
   }
 }
 
