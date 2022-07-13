@@ -1,5 +1,4 @@
 import { Chapter } from '@prisma/client'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 
@@ -20,7 +19,7 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
   }
 
   return (
-    <Link href={`/chapter/${chapter.slug}`}>
+    <a href={`/chapter/${chapter.slug}`}>
       <a className="p-5 dark:bg-[#0a0e16] bg-white rounded-lg mt-5 mx-2 flex flex-col items-center hover:scale-105 ease-in-out duration-700">
         <h1 className="p-2 font-bold text-3xl text-black dark:text-white">
           {chapter.title}
@@ -41,7 +40,7 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
           Read more
         </button>
       </a>
-    </Link>
+    </a>
   )
 }
 
