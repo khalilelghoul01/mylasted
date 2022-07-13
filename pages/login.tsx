@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 
-function login() {
+function Login() {
   const { data: session, status } = useSession()
   const router = useRouter()
   useEffect(() => {
@@ -16,4 +16,4 @@ function login() {
   return <div>login</div>
 }
 
-export default login
+export default Login

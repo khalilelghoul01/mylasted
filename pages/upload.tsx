@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import React, { FormEvent, useEffect } from 'react'
 
-function upload() {
+function Upload() {
   const { data: session, status } = useSession()
   const router = useRouter()
   useEffect(() => {
@@ -64,4 +64,4 @@ function upload() {
   )
 }
 
-export default upload
+export default Upload

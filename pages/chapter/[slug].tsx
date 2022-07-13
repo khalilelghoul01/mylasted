@@ -1,9 +1,9 @@
-import React, { useEffect ,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from '../../components/slider'
 import Navbar from '../../components/Navbar'
 import { useRouter } from 'next/router'
 import { Chapter } from '@prisma/client'
-function chapter() {
+function Chapter() {
   const [chapter, setChapter] = useState<Chapter>({
     title: 'Loading...',
     content: 'Loading...',
@@ -54,4 +54,4 @@ function chapter() {
   )
 }
 
-export default chapter
+export default Chapter
