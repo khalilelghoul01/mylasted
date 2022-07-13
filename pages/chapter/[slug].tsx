@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Slider from '../../components/Slider'
+import Slider from '../../components/slider'
 import Navbar from '../../components/Navbar'
 import { useRouter } from 'next/router'
 import { Chapter } from '@prisma/client'
