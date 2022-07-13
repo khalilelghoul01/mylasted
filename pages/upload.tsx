@@ -32,7 +32,6 @@ function Upload() {
       .trim()
       .toLowerCase()
       .replace(/(\s|\.|\?|_|\\|\/|\||\(|\))+/g, '-')
-    const revalidate = await fetch(server + '/api/revalidate/' + slug)
     router.push('/chapter/' + slug)
   }
 

@@ -23,7 +23,6 @@ export async function getServerSideProps({ params }: { params: any }) {
     props: {
       prefetch: data.chapter,
     },
-    revalidate: 60 * 60 * 24,
   }
 }
 
@@ -32,6 +31,9 @@ function Chapter({ prefetch }: { prefetch: Chapter }) {
   const [fontSize, setFontSize] = useState(50)
   const slug = useRouter().query.slug
   const pageurl = useRouter().asPath
+  if (!chapter) {
+    return <div>chapter dosn't exist</div>
+  }
   return (
     <>
       <div className="w-full h-full dark:bg-gray-900 bg-gray-100 min-h-screen ">
