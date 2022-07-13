@@ -4,7 +4,7 @@ import { MdMenu, MdClose } from 'react-icons/md'
 import { BsCoin, BsFillMoonFill, BsFillSunFill } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/react'
-
+import Link from 'next/link'
 function Navbar({ toggleTheme }: { toggleTheme: (dark: boolean) => void }) {
   const router = useRouter()
   const { data: session } = useSession()
@@ -78,18 +78,18 @@ function Navbar({ toggleTheme }: { toggleTheme: (dark: boolean) => void }) {
               </div>
               <ul className="flex flex-col h-full">
                 <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-                  <a href="/">Updates</a>
+                  <Link href="/">Updates</Link>
                 </li>
                 <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-                  <a href="#">Chapters</a>
+                  <Link href="#">Chapters</Link>
                 </li>
                 <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-                  <a href="#">Donations</a>
+                  <Link href="#">Donations</Link>
                 </li>
                 <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-                  <a href="https://discord.gg/9zj7tmQqD8" target="_blank">
+                  <Link href="https://discord.gg/9zj7tmQqD8" target="_blank">
                     Discord
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <ul className="flex flex-col h-full">
@@ -113,18 +113,18 @@ function Navbar({ toggleTheme }: { toggleTheme: (dark: boolean) => void }) {
         <div className="hidden md:flex font-semibold w-full justify-between">
           <ul className="hidden md:flex h-full">
             <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-              <a href="/">Updates</a>
+              <Link href="/">Updates</Link>
             </li>
             <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-              <a href="#">Chapters</a>
+              <Link href="#">Chapters</Link>
             </li>
             <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-              <a href="#">Donations</a>
+              <Link href="#">Donations</Link>
             </li>
             <li className="p-4 text-black dark:text-white hover:scale-110 ease-in-out duration-500 ">
-              <a href="https://discord.gg/9zj7tmQqD8" target="_blank">
+              <Link href="https://discord.gg/9zj7tmQqD8" target="_blank">
                 Discord
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="flex items-center justify-center h-full space-x-3  ">
