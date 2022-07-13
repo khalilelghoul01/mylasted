@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import { Chapter } from '@prisma/client'
 import { server } from '../../config'
 import { getAllChapters } from '../../db/chapters'
+import Script from 'next/script'
 
 export async function getStaticPaths() {
   const chapters = await getAllChapters()
-
   return {
     paths: chapters.map((chapter) => ({
       params: { slug: chapter.slug },
@@ -40,7 +40,7 @@ function Chapter({ prefetch }: { prefetch: Chapter }) {
   const [chapter, setChapter] = useState<Chapter>(prefetch)
   const [fontSize, setFontSize] = useState(50)
   const slug = useRouter().query.slug
-
+  const pageurl = useRouter().asPath
   return (
     <>
       <div className="w-full h-full dark:bg-gray-900 bg-gray-100 min-h-screen ">
@@ -58,7 +58,25 @@ function Chapter({ prefetch }: { prefetch: Chapter }) {
                 </React.Fragment>
               ))}
           </div>
+          <div id="disqus_thread"></div>
         </div>
+        <Script>
+          {`/**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    
+    var disqus_config = function () {
+    this.page.url = document.location.href;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = new URL(document.URL).pathname; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://mylasted.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();`}
+        </Script>
       </div>
     </>
   )
