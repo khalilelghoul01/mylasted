@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAllChapters } from '../../db/chapters'
+import { getAllChapters } from '../../../db/chapters'
 
 export default async function handler(
   req: NextApiRequest,

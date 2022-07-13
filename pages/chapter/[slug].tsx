@@ -46,10 +46,13 @@ function Chapter({ prefetch }: { prefetch: Chapter }) {
       <div className="w-full h-full dark:bg-gray-900 bg-gray-100 min-h-screen ">
         <div className=" max-w-[1000px] mx-auto pt-[80px] ">
           <Slider onChange={setFontSize}></Slider>
+          <h1 className="text-3xl md:text-5xl text-black dark:text-white p-5 font-bold mt-3">
+            {chapter.title}
+          </h1>
 
           <div
             style={{ fontSize: `${fontSize}px` }}
-            className="p-5 dark:text-white text-black"
+            className="p-5 dark:text-white text-black min-h-[500px]"
           >
             {chapter?.content &&
               chapter?.content.split('\n').map((line, index) => (
@@ -58,7 +61,7 @@ function Chapter({ prefetch }: { prefetch: Chapter }) {
                 </React.Fragment>
               ))}
           </div>
-          <div id="disqus_thread"></div>
+          <div id="disqus_thread" className="p-5"></div>
         </div>
         <Script>
           {`/**
