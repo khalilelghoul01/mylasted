@@ -4,8 +4,20 @@ import Navbar from '../../components/Navbar'
 import { useRouter } from 'next/router'
 import { Chapter } from '@prisma/client'
 import { server } from '../../config'
+import { getAllChapters } from '../../db/chapters'
 
-export async function getServerSideProps({ params }: { params: any }) {
+export async function getStaticPaths() {
+  const chapters = await getAllChapters()
+
+  return {
+    paths: chapters.map((chapter) => ({
+      params: { slug: chapter.slug },
+    })),
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }: { params: any }) {
   const data = await (
     await fetch(server + '/api/chapter', {
       method: 'POST',
