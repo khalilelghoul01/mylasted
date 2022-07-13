@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import React, { FormEvent, useEffect, useState } from 'react'
+import { server } from './../config/index'
 
 function Upload() {
   const { data: session, status } = useSession()
@@ -31,7 +32,7 @@ function Upload() {
       .trim()
       .toLowerCase()
       .replace(/(\s|\.|\?|_|\\|\/|\||\(|\))+/g, '-')
-    const revalidate = await fetch('/api/revalidate/' + slug)
+    const revalidate = await fetch(server + '/api/revalidate/' + slug)
     router.push('/chapter/' + slug)
   }
 
